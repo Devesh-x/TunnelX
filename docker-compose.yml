@@ -1,0 +1,66 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: localbridge-postgres
+    environment:
+      POSTGRES_DB: localbridge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./tunnel-server/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - localbridge-network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: localbridge-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - localbridge-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  # Tunnel Server (will be added later)
+  # tunnel-server:
+  #   build:
+  #     context: ./tunnel-server
+  #     dockerfile: Dockerfile
+  #   container_name: localbridge-server
+  #   ports:
+  #     - "8080:8080"
+  #     - "8081:8081"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - DB_HOST=postgres
+  #     - REDIS_HOST=redis
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   networks:
+  #     - localbridge-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+
+networks:
+  localbridge-network:
+    driver: bridge
