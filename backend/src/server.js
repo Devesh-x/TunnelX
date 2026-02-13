@@ -17,7 +17,9 @@ const tunnelRoutes = require('./routes/tunnels');
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+    contentSecurityPolicy: false, // Disable CSP for tunnel functionality
+}));
 app.use(cors());
 
 // Body parsing middleware

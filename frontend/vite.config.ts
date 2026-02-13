@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: './', // Use relative paths for tunnel compatibility
   plugins: [react()],
   resolve: {
     alias: {
