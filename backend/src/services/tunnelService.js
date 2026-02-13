@@ -23,7 +23,9 @@ const generateTunnelId = () => {
  */
 const generatePublicUrl = (tunnelId) => {
     const baseDomain = process.env.BASE_DOMAIN || 'localbridge.dev';
-    return `https://${tunnelId}.${baseDomain}`;
+    // Use path-based routing for Render free tier support
+    // https://domain.com/t/tunnel-id instead of https://tunnel-id.domain.com
+    return `https://${baseDomain}/t/${tunnelId}`;
 };
 
 /**
