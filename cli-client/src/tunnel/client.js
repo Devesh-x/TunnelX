@@ -28,6 +28,10 @@ class TunnelClient {
             const wsUrl = serverUrl.replace('http://', 'ws://').replace('https://', 'wss://');
             const url = `${wsUrl}/ws?token=${token}`;
 
+            // Create public URL (path-based for Render free tier support)
+            // https://project.onrender.com/t/tunnel-id
+            this.publicUrl = `${serverUrl}/t/${this.tunnelId}`;
+
             console.log(chalk.gray(`Connecting to ${wsUrl}...`));
 
             this.ws = new WebSocket(url);
@@ -56,8 +60,10 @@ class TunnelClient {
             this.ws.on('close', (code, reason) => {
                 this.connected = false;
                 console.log(chalk.yellow(`\n⚠️  Connection closed (${code}): ${reason || 'Unknown'}`));
-                console.log(chalk.gray('Tunnel stopped\n'));
-                process.exit(0);
+
+                // Don't exit, try to reconnect
+                console.log(chalk.gray('Configuring auto-reconnect in 3s...'));
+                setTimeout(() => this.connect(), 3000);
             });
 
             // Connection error

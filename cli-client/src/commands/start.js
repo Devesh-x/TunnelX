@@ -64,14 +64,16 @@ const startCommand = async (options) => {
         if (error.response) {
             const message = error.response.data?.error || 'Unknown error';
             console.log(chalk.red(`Error: ${message}\n`));
+            process.exit(1);
         } else if (error.request) {
             console.log(chalk.red('Error: Cannot connect to server'));
             console.log(chalk.gray('Make sure the tunnel server is running\n'));
+            // Retry on connection failure too
+            setTimeout(() => startCommand(options), 5000);
         } else {
             console.log(chalk.red(`Error: ${error.message}\n`));
+            process.exit(1);
         }
-
-        process.exit(1);
     }
 };
 
