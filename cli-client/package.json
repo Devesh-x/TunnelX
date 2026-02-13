@@ -1,0 +1,35 @@
+{
+    "name": "@tunnelx/cli",
+    "version": "1.0.0",
+    "description": "TunnelX CLI - Expose your localhost to the internet",
+    "main": "src/index.js",
+    "bin": {
+        "tunnelx": "./bin/tunnelx.js"
+    },
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js",
+        "test": "jest"
+    },
+    "keywords": [
+        "tunnel",
+        "localhost",
+        "ngrok",
+        "cli"
+    ],
+    "author": "TunnelX",
+    "license": "MIT",
+    "dependencies": {
+        "commander": "^11.1.0",
+        "ws": "^8.16.0",
+        "axios": "^1.6.5",
+        "chalk": "^4.1.2",
+        "ora": "^5.4.1",
+        "prompts": "^2.4.2",
+        "conf": "^10.2.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.3",
+        "jest": "^29.7.0"
+    }
+}

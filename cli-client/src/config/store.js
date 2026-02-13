@@ -6,7 +6,7 @@ const Conf = require('conf');
  */
 
 const config = new Conf({
-    projectName: 'localbridge',
+    projectName: 'tunnelx',
     defaults: {
         token: null,
         email: null,
