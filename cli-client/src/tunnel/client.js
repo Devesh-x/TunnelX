@@ -29,8 +29,8 @@ class TunnelClient {
             const url = `${wsUrl}/ws?token=${token}`;
 
             // Create public URL (path-based for Render free tier support)
-            // https://project.onrender.com/t/tunnel-id
-            this.publicUrl = `${serverUrl}/t/${this.tunnelId}`;
+            // https://project.onrender.com/t/tunnel-id/
+            this.publicUrl = `${serverUrl}/t/${this.tunnelId}/`;
 
             console.log(chalk.gray(`Connecting to ${wsUrl}...`));
 

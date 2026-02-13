@@ -39,6 +39,13 @@ app.use('/t/:tunnelId', async (req, res) => {
     const { tunnelId } = req.params;
     const { forwardRequest, getConnection } = require('./websocket/server');
 
+    // Force trailing slash for correct relative path resolution
+    // /t/abc -> /t/abc/
+    const urlPath = req.originalUrl.split('?')[0];
+    if (req.url === '/' && !urlPath.endsWith('/')) {
+        return res.redirect(301, req.originalUrl.replace(urlPath, urlPath + '/'));
+    }
+
     // Check if tunnel exists and is connected
     const ws = getConnection(tunnelId);
     if (!ws) {
