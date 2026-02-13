@@ -11,8 +11,15 @@ function App() {
     return isAuthenticated() ? children : <Navigate to="/login" />;
   };
 
+  // Calculate basename for tunnel compatibility
+  // If running under /t/tunnel-id/, use that as base
+  const path = window.location.pathname;
+  const basename = path.startsWith('/t/')
+    ? path.substring(0, path.indexOf('/', 3) + 1)
+    : '/';
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
