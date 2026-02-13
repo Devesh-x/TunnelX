@@ -24,8 +24,50 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Request logging
-app.use(requestLogger);
+// Request logging - DEBUG
+app.use((req, res, next) => {
+    console.log(`📥 ${req.method} ${req.url}`);
+    next();
+});
+
+// Tunnel Request Handler - MOVED TO TOP
+// Handles public requests to tunnels: /t/:tunnelId/*
+app.use('/t/:tunnelId', async (req, res) => {
+    console.log(`🚇 Tunnel Request: ${req.method} ${req.originalUrl}`);
+    const { tunnelId } = req.params;
+    const { forwardRequest, getConnection } = require('./websocket/server');
+
+    // Check if tunnel exists and is connected
+    const ws = getConnection(tunnelId);
+    if (!ws) {
+        console.log(`❌ Tunnel ${tunnelId} not found or inactive`);
+        return res.status(404).send('Tunnel not found or inactive');
+    }
+
+    try {
+        console.log(`✅ Forwarding request to tunnel ${tunnelId}`);
+        // Forward request to tunnel client
+        const response = await forwardRequest(tunnelId, {
+            requestId: require('crypto').randomUUID(),
+            method: req.method,
+            url: req.url, // Path after /t/:tunnelId
+            headers: req.headers,
+            body: req.body,
+        });
+
+        // Send response back to client
+        if (response.headers) {
+            Object.entries(response.headers).forEach(([key, value]) => {
+                res.setHeader(key, value);
+            });
+        }
+
+        res.status(response.statusCode || 200).send(response.body);
+    } catch (error) {
+        logger.error(`Tunnel error: ${error.message}`);
+        res.status(502).send('Bad Gateway');
+    }
+});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
