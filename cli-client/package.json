@@ -1,7 +1,7 @@
 {
     "name": "tunnelx",
     "version": "1.0.2",
-    "description": "TunnelX CLI - Expose your localhost to the internet",
+    "description": "TunnelX - The modern, secure alternative to ngrok. Expose your localhost to the internet with a single command. Features custom subdomains, request inspection, and more.",
     "main": "src/index.js",
     "bin": {
         "tunnelx": "./bin/tunnelx.js"
@@ -11,13 +11,24 @@
         "dev": "nodemon src/index.js",
         "test": "jest"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Devesh-x/TunnelX.git"
+    },
     "keywords": [
         "tunnel",
         "localhost",
         "ngrok",
-        "cli"
+        "ngrok-alternative",
+        "reverse-proxy",
+        "webhook",
+        "cli",
+        "devtools",
+        "exposure",
+        "port-forwarding",
+        "secure-tunnel"
     ],
-    "author": "TunnelX",
+    "author": "Devesh Rajput",
     "license": "MIT",
     "dependencies": {
         "commander": "^11.1.0",
