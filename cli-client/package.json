@@ -1,5 +1,5 @@
 {
-    "name": "@tunnelx/cli",
+    "name": "tunnelx",
     "version": "1.0.0",
     "description": "TunnelX CLI - Expose your localhost to the internet",
     "main": "src/index.js",

@@ -50,7 +50,7 @@ function Docs() {
                                     <span className="text-xs text-muted-foreground">bash</span>
                                 </div>
                                 <span className="text-primary mr-2">$</span>
-                                npm install -g tunnelx-cli
+                                npm install -g tunnelx
                             </div>
                             <div className="mt-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-500/90 text-sm">
                                 <strong>Pro Tip:</strong> For complex apps (React, Next.js, Vue), we recommending <strong>building your app</strong> first!
