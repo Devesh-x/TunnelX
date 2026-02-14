@@ -9,6 +9,24 @@ function Dashboard() {
     const [user, setUser] = useState<User | null>(null);
     const [tunnels, setTunnels] = useState<Tunnel[]>([]);
     const [loading, setLoading] = useState(true);
+    const loadData = async () => {
+        try {
+            const [userRes, tunnelsRes] = await Promise.all([
+                getCurrentUser(),
+                getTunnels(),
+            ]);
+            setUser(userRes.data.data.user);
+            setTunnels(tunnelsRes.data.data.tunnels);
+        } catch (error: any) {
+            if (error.response?.status === 401) {
+                localStorage.removeItem('token');
+                navigate('/login');
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
         loadData();
     }, []);
