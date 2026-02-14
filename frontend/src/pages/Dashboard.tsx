@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getTunnels, createTunnel, deleteTunnel, getCurrentUser, type Tunnel, type User } from '@/lib/api';
+import { getTunnels, deleteTunnel, getCurrentUser, type Tunnel, type User } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Copy, Trash2 } from 'lucide-react';
 
