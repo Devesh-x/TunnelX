@@ -4,7 +4,7 @@ import { AnimatedHero } from '@/components/ui/animated-hero';
 import { ComparisonTable } from '@/components/landing/ComparisonTable';
 import { FeaturesGrid } from '@/components/landing/FeaturesGrid';
 import { FaqAccordion } from '@/components/landing/FaqAccordion';
-import { Terminal, Shield, Zap, Globe, Github, BookOpen } from 'lucide-react';
+import { Globe, Github, BookOpen } from 'lucide-react';
 
 function Landing() {
     const navigate = useNavigate();
@@ -36,16 +36,6 @@ function Landing() {
                     <div className="container mx-auto px-4 text-center">
                         <AnimatedHero />
 
-                        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <Button size="lg" className="h-12 px-8 text-lg" onClick={() => navigate('/register')}>
-                                Start Tunnelling Now
-                                <Zap className="ml-2 w-5 h-5" />
-                            </Button>
-                            <Button variant="outline" size="lg" className="h-12 px-8 text-lg font-mono" onClick={() => navigator.clipboard.writeText('npm install -g tunnelx')}>
-                                <Terminal className="mr-2 w-5 h-5" />
-                                npm install -g tunnelx
-                            </Button>
-                        </div>
                     </div>
                 </section>
 

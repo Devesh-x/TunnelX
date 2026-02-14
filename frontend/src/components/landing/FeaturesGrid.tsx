@@ -54,7 +54,7 @@ export function FeaturesGrid() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     {features.map((feature, index) => (
-                        <div key={index} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300">
+                        <div key={index} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/40 p-8 hover:border-white/20 transition-all duration-300 text-left">
                             <div className={`absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity bg-${feature.color}-500/20 rounded-bl-3xl`}>
                                 {feature.icon}
                             </div>
