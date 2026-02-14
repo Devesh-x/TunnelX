@@ -1,68 +1,63 @@
-# LocalBridge CLI
+# TunnelX CLI
 
-Command-line tool to expose your localhost to the internet.
+**Expose your localhost to the internet.**
+
+A professional, secure, and lightweight tunneling solution for developers.
 
 ## Installation
 
 ```bash
-cd cli-client
-npm install
-npm link  # Makes 'localbridge' command available globally
+npm install -g tunnelx
 ```
 
-## Usage
+## Quick Start
 
 ### 1. Register an account
 ```bash
-localbridge register
+tunnelx register
 ```
 
 ### 2. Login
 ```bash
-localbridge login
+tunnelx login
 ```
 
 ### 3. Start a tunnel
 ```bash
-localbridge start --port 3000
+tunnelx start --port 3000
 ```
-
-### 4. Check who's logged in
-```bash
-localbridge whoami
-```
-
-### 5. Logout
-```bash
-localbridge logout
-```
+*(Replace 3000 with your local server port)*
 
 ## Commands
 
-- `localbridge register` - Create a new account
-- `localbridge login` - Login to your account
-- `localbridge start --port <port>` - Start exposing localhost
-- `localbridge whoami` - Show current user
-- `localbridge logout` - Logout from account
-- `localbridge --help` - Show help
+- `tunnelx register` - Create a new account
+- `tunnelx login` - Login to your account
+- `tunnelx start --port <port>` - Start exposing localhost
+- `tunnelx whoami` - Show current user info
+- `tunnelx logout` - Logout from account
+- `tunnelx --help` - Show help
 
-## Example
+## Example Usage
 
 ```bash
 # Login
-$ localbridge login
+$ tunnelx login
 Email: test@example.com
 Password: ********
-✅ Login successful!
+[Success] Login successful!
 
 # Start tunnel
-$ localbridge start --port 3000
-🚇 LocalBridge Tunnel
+$ tunnelx start --port 3000
+TunnelX Tunnel
 
-✅ Tunnel created!
-🌐 Public URL: https://abc123xyz.localbridge.dev
-🔗 Forwarding to: http://localhost:3000
+[Success] Tunnel created!
+Tunnel ID: abc123xyz
+Public URL: https://tunnelx-backend.onrender.com/t/abc123xyz/
+Forwarding to: http://localhost:3000
 
-✅ Tunnel is active!
+[Success] Tunnel is active!
 Press Ctrl+C to stop
 ```
+
+---
+Built with ❤️ by the TunnelX Team
