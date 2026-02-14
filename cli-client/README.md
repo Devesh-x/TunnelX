@@ -1,22 +1,21 @@
-# 🚀 TunnelX
+# TunnelX
 
-**Expose your localhost to the internet in seconds.**
+**Expose your localhost to the internet.**
 
-TunnelX is a professional, secure, and lightweight command-line tool that creates a secure tunnel from the public internet to your local machine. It's the perfect alternative to ngrok for testing webhooks, sharing demos, and developing locally.
+TunnelX is a professional, secure, and lightweight command-line tool that creates a secure tunnel from the public internet to your local machine. It creates a bridge between the public internet and your local web server, allowing you to share your work, test webhooks, and develop locally with a secure public URL.
 
-![TunnelX Demo](https://tunnelx-frontend.vercel.app/demo-terminal.png)
+![TunnelX Demo](./assets/demo.png)
 
-## ✨ Features
+## Features
 
-- 🌐 **Instant Public URL**: Get a secure `https` URL for your localhost server immediately.
-- 🔒 **Secure Tunnels**: All traffic is encrypted and securely forwarded.
-- 🔄 **WebSocket Support**: Full support for real-time applications and WebSockets.
-- 🕵️ **Request Inspection**: Real-time logging of incoming requests (Method, Path, Status).
-- 🚀 **Zero Configuration**: Start a tunnel with a single command.
-- 💻 **Cross-Platform**: Works on Windows, macOS, and Linux.
-- 🆓 **Free to Use**: No credit card required.
+- **Instant Public URL**: Get a secure `https` URL for your localhost server immediately.
+- **Secure Tunnels**: All traffic is encrypted and securely forwarded.
+- **WebSocket Support**: Full support for real-time applications and WebSockets.
+- **Request Inspection**: Real-time logging of incoming requests (Method, Path, Status).
+- **Persistent Identity**: maintain your tunnel metrics and history.
+- **Cross-Platform**: Works on Windows, macOS, and Linux.
 
-## 📦 Installation
+## Installation
 
 Install TunnelX globally using npm:
 
@@ -24,37 +23,36 @@ Install TunnelX globally using npm:
 npm install -g tunnelx
 ```
 
-Or run it directly with `npx`:
+Or run it directly with `npx` without installation:
 
 ```bash
 npx tunnelx start --port 3000
 ```
 
-## ⚡ Quick Start
+## Quick Start
 
-Follow this simple workflow to get started:
+### 1. Register
+Create a free account to get started.
 
-### 1. Register an Account
-First time users need to create a free account.
 ```bash
 tunnelx register
 ```
 
 ### 2. Login
-Log in to your account securely.
+Authenticate your CLI client.
+
 ```bash
 tunnelx login
 ```
 
 ### 3. Start a Tunnel
-Expose your local server (e.g., running on port 3000).
+Expose your local server running on a specific port (e.g., 3000).
+
 ```bash
 tunnelx start --port 3000
 ```
 
-## 🖥️ Example Output
-
-When you start a tunnel, you'll see a dashboard like this:
+## Example Output
 
 ```bash
 $ tunnelx start --port 3000
@@ -74,63 +72,42 @@ Press Ctrl+C to stop
 [INFO]  POST /webhooks/stripe 201 Created
 ```
 
-## 🛠️ Commands
+## Commands
 
-| Command | Description | Example |
-|---------|-------------|---------|
+| Command | Description | Usage |
+|---------|-------------|-------|
 | `tunnelx register` | Create a new TunnelX account | `tunnelx register` |
 | `tunnelx login` | Login to your account | `tunnelx login` |
-| `tunnelx start` | Start a tunnel on a specific port | `tunnelx start --port 8080` |
+| `tunnelx start` | Start a tunnel on a specific port | `tunnelx start --port <port>` |
 | `tunnelx whoami` | Check currently logged-in user | `tunnelx whoami` |
 | `tunnelx logout` | Logout from the CLI | `tunnelx logout` |
 | `tunnelx --help` | Show help and usage details | `tunnelx --help` |
 
-## 🔍 How It Works
+## How It Works
 
-TunnelX creates a bridge between the public internet and your local machine:
+1.  **Client Connection**: The TunnelX CLI establishes a secure WebSocket connection to the TunnelX Server.
+2.  **Public Endpoint**: The server provisions a unique subdomain (e.g., `yourapp.tunnelx.dev`).
+3.  **Request Forwarding**: Incoming requests to the public URL are routed through the WebSocket tunnel to your CLI.
+4.  **Local Execution**: Your CLI proxies the request to your local server (e.g., `localhost:3000`) and returns the response.
 
-1.  **Client**: The TunnelX CLI runs on your machine and connects to the TunnelX Server via a secure WebSocket connection.
-2.  **Server**: The TunnelX Server (Reverse Proxy) receives public requests at `Your-Subdomain.tunnelx.dev`.
-3.  **Forwarding**: The server forwards the request through the WebSocket to your CLI client.
-4.  **Local Request**: The CLI client makes the actual request to your `localhost:<port>` and sends the response back through the tunnel.
+## Troubleshooting
 
-## 🆚 Why TunnelX?
-
-| Feature | TunnelX | ngrok (Free) | localtunnel |
-|:--------|:-------:|:------------:|:-----------:|
-| **Custom Subdomains** | ✅ | ❌ | ❌ (Unreliable) |
-| **Persistent Identity** | ✅ | ❌ | ❌ |
-| **Request Inspection** | ✅ | ✅ | ❌ |
-| **Limits** | Generous | Restrictive | Unstable |
-| **Open Source** | ✅ | ❌ | ✅ |
-
-## 🏗️ Technical Stack
-
-TunnelX is built with modern, high-performance technologies:
--   **Runtime**: Node.js & TypeScript
--   **Communication**: WebSockets (ws) for real-time duplex communication.
--   **Orchestration**: Redis (for session management and routing).
--   **CLI**: Commander.js for a robust command-line interface.
-
-## ❓ Troubleshooting
-
-**"Port already in use"**
-Make sure no other instance of TunnelX is running.
+**Port already in use**
+Ensure no other instance of TunnelX is running.
 `killall node` (macOS/Linux) or check Task Manager (Windows).
 
-**"Connection refused"**
-Ensure your local server (e.g., localhost:3000) is actually running before starting the tunnel.
+**Connection refused**
+Verify that your local web server is running on the specified port before starting the tunnel.
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome. Please submit a Pull Request on our GitHub repository.
 Repository: [github.com/Devesh-x/TunnelX](https://github.com/Devesh-x/TunnelX)
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
-## 👤 Author
+## Author
 
 **Devesh Rajput**
--   GitHub: [@Devesh-x](https://github.com/Devesh-x)
