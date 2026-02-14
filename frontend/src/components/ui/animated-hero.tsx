@@ -91,14 +91,14 @@ function AnimatedHero({ onGetStarted, onSignIn }: AnimatedHeroProps) {
                             </div>
                             <span className="text-xs text-muted-foreground ml-2">bash — 80x24</span>
                         </div>
-                        <div className="bg-black p-6 font-mono text-sm">
+                        <div className="bg-black p-6 font-mono text-sm text-left">
                             <div className="flex gap-3 text-white">
                                 <span>$</span>
                                 <span className="text-white">tunnelx start --port 3000</span>
                                 <span className="animate-pulse">█</span>
                             </div>
-                            <div className="mt-2 text-gray-300">✓ Tunnel created successfully!</div>
-                            <div className="mt-1 text-gray-400">→ Public URL: https://abc123.tunnelx.dev</div>
+                            <div className="mt-2 text-green-400">✓ Tunnel created successfully!</div>
+                            <div className="mt-1 text-blue-400">→ Public URL: https://abc123xyz.tunnelx.dev</div>
                         </div>
                     </div>
                 </div>
