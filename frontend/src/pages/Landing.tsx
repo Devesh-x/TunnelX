@@ -20,7 +20,7 @@ function Landing() {
                             <BookOpen className="w-4 h-4" />
                             Docs
                         </Button>
-                        <Button variant="ghost" size="sm" className="gap-2">
+                        <Button variant="ghost" size="sm" className="gap-2" onClick={() => window.open('https://github.com/Devesh-x/TunnelX', '_blank')}>
                             <Github className="w-4 h-4" />
                             GitHub
                         </Button>

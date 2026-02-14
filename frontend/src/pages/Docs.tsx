@@ -53,7 +53,7 @@ function Docs() {
                                 npm install -g tunnelx
                             </div>
                             <div className="mt-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-500/90 text-sm">
-                                <strong>Pro Tip:</strong> For complex apps (React, Next.js, Vue), we recommending <strong>building your app</strong> first!
+                                <strong>Pro Tip:</strong> For complex apps (React, Next.js, Vue), we recommend <strong>building your app</strong> first!
                                 <br />
                                 <code>npm run build && npm run preview</code>
                                 <br />
@@ -79,9 +79,6 @@ function Docs() {
                                 <span className="text-primary mr-2">$</span>
                                 tunnelx login
                             </div>
-                            <p className="text-sm text-muted-foreground mt-2 ml-1">
-                                You'll be prompted to enter your email and password.
-                            </p>
                         </div>
                     </section>
 
@@ -106,10 +103,10 @@ function Docs() {
                             <div className="mt-6 space-y-2">
                                 <h3 className="font-semibold text-foreground">You'll see output like:</h3>
                                 <div className="bg-black/80 rounded-xl p-4 font-mono text-sm text-green-400 border border-green-900/30">
-                                    <div className="mb-2">🚇 TunnelX Tunnel</div>
-                                    <div className="text-white mb-4">✅ Connected to tunnel server</div>
-                                    <div className="text-blue-400">🌐 Public URL: https://tunnelx-backend.onrender.com/t/abc123xyz/</div>
-                                    <div className="text-yellow-400">🔗 Forwarding to: http://localhost:5173</div>
+                                    <div className="mb-2">TunnelX Tunnel</div>
+                                    <div className="text-white mb-4">[Success] Connected to tunnel server</div>
+                                    <div className="text-blue-400">Public URL: https://tunnelx-backend.onrender.com/t/abc123xyz/</div>
+                                    <div className="text-yellow-400">Forwarding to: http://localhost:5173</div>
                                 </div>
                             </div>
                         </div>
