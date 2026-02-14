@@ -50,10 +50,14 @@ function Docs() {
                                     <span className="text-xs text-muted-foreground">bash</span>
                                 </div>
                                 <span className="text-primary mr-2">$</span>
-                                npm install -g @tunnelx/cli
+                                npm install -g tunnelx-cli
                             </div>
-                            <div className="mt-4 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20 text-yellow-500/90 text-sm">
-                                <strong>Note:</strong> If you haven't published the package yet, navigate to the <code>cli-client</code> directory and run <code>npm link</code> locally.
+                            <div className="mt-4 p-4 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-500/90 text-sm">
+                                <strong>Pro Tip:</strong> For complex apps (React, Next.js, Vue), we recommending <strong>building your app</strong> first!
+                                <br />
+                                <code>npm run build && npm run preview</code>
+                                <br />
+                                This avoids issues with absolute paths in development servers.
                             </div>
                         </div>
                     </section>
