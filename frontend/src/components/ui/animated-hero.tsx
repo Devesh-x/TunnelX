@@ -29,7 +29,7 @@ function AnimatedHero({ onGetStarted, onSignIn }: AnimatedHeroProps) {
     return (
         <div className="w-full">
             <div className="container mx-auto px-4">
-                <div className="flex gap-8 py-12 lg:py-20 items-center justify-center flex-col">
+                <div className="flex gap-8 py-8 lg:py-12 items-center justify-center flex-col">
                     <div>
                         <Button variant="secondary" size="sm" className="gap-2">
                             <span className="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
