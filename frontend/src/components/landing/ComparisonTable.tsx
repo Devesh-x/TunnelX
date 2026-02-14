@@ -10,7 +10,6 @@ interface ComparisonFeature {
 
 const features: ComparisonFeature[] = [
     { name: 'No install required', tunnelx: true, ngrok: false, cloudflare: false, localtunnel: true },
-    { name: 'No signup required', tunnelx: true, ngrok: false, cloudflare: false, localtunnel: true },
     { name: 'Free', tunnelx: true, ngrok: 'Limited', cloudflare: true, localtunnel: true },
     { name: 'HTTPS included', tunnelx: true, ngrok: true, cloudflare: true, localtunnel: true },
     { name: 'Works with SSH', tunnelx: true, ngrok: false, cloudflare: false, localtunnel: false },
