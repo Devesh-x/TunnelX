@@ -1,6 +1,6 @@
 {
     "name": "tunnelx",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "TunnelX CLI - Expose your localhost to the internet",
     "main": "src/index.js",
     "bin": {

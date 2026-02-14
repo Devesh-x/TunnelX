@@ -139,12 +139,6 @@ function Docs() {
                         </div>
                     </section>
                 </div>
-
-                <div className="mt-20 pt-10 border-t border-border/40 text-center">
-                    <p className="text-muted-foreground">
-                        Built with ❤️ by the TunnelX Team
-                    </p>
-                </div>
             </main>
         </div>
     );

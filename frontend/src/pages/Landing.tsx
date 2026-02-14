@@ -1,45 +1,62 @@
+```
 import { useNavigate } from 'react-router-dom';
-import { AnimatedHero } from '@/components/ui/animated-hero';
 import { Button } from '@/components/ui/button';
-import { Github, BookOpen } from 'lucide-react';
+import { AnimatedHero } from '@/components/ui/animated-hero';
+import { ComparisonTable } from '@/components/landing/ComparisonTable';
+import { FeaturesGrid } from '@/components/landing/FeaturesGrid';
+import { FaqAccordion } from '@/components/landing/FaqAccordion';
+import { Terminal, Shield, Zap, Globe, Github, BookOpen } from 'lucide-react';
 
 function Landing() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-background">
-            {/* Navbar without border */}
-            <nav className="fixed top-4 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
-                <div className="max-w-[1300px] mx-auto px-6 py-4 flex justify-between items-center">
-                    {/* Left: TunnelX Logo */}
-                    <h1 className="text-3xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>TunnelX</h1>
-
-                    {/* Right: Nav Links */}
-                    <div className="flex items-center gap-6">
-                        <Button variant="ghost" size="sm" className="gap-2" onClick={() => navigate('/docs')}>
-                            <BookOpen className="w-4 h-4" />
-                            Docs
-                        </Button>
-                        <Button variant="ghost" size="sm" className="gap-2" onClick={() => window.open('https://github.com/Devesh-x/TunnelX', '_blank')}>
-                            <Github className="w-4 h-4" />
-                            GitHub
-                        </Button>
-                        <Button variant="outline" size="sm" onClick={() => navigate('/login')}>
-                            Login
-                        </Button>
-                    </div>
+        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+            {/* Hero Section */}
+            <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+                <div className="flex items-center gap-2 font-bold text-xl">
+                    <Globe className="w-6 h-6 text-primary" />
+                    <span>TunnelX</span>
                 </div>
-            </nav>
+                <div className="flex gap-4">
+                    <Button variant="ghost" size="sm" className="gap-2" onClick={() => navigate('/docs')}>
+                        <BookOpen className="w-4 h-4" />
+                        Docs
+                    </Button>
+                    <Button variant="ghost" size="sm" className="gap-2" onClick={() => window.open('https://github.com/Devesh-x/TunnelX', '_blank')}>
+                        <Github className="w-4 h-4" />
+                        GitHub
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => navigate('/login')}>Login</Button>
+                    <Button size="sm" onClick={() => navigate('/register')}>Get Started</Button>
+                </div>
+            </header>
 
-            {/* Hero Section with minimal top padding for navbar */}
-            <main className="pt-4">
-                <AnimatedHero
-                    onGetStarted={() => navigate('/register')}
-                    onSignIn={() => navigate('/login')}
-                />
+            <main>
+                <section className="py-20 md:py-32">
+                    <div className="container mx-auto px-4 text-center">
+                        <AnimatedHero />
+                        
+                        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+                            <Button size="lg" className="h-12 px-8 text-lg" onClick={() => navigate('/register')}>
+                                Start Tunnelling Now
+                                <Zap className="ml-2 w-5 h-5" />
+                            </Button>
+                            <Button variant="outline" size="lg" className="h-12 px-8 text-lg font-mono" onClick={() => navigator.clipboard.writeText('npm install -g tunnelx')}>
+                                <Terminal className="mr-2 w-5 h-5" />
+                                npm install -g tunnelx
+                            </Button>
+                        </div>
+                    </div>
+                </section>
+
+                <FeaturesGrid />
+                <ComparisonTable />
+                <FaqAccordion />
             </main>
         </div>
     );
 }
 
 export default Landing;
+```

@@ -196,5 +196,3 @@ MIT
 5. Create a Pull Request
 
 ---
-
-**Built with ❤️ using modern web technologies**

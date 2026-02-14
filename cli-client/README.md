@@ -60,4 +60,3 @@ Press Ctrl+C to stop
 ```
 
 ---
-Built with ❤️ by the TunnelX Team
