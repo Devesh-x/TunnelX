@@ -8,7 +8,7 @@ interface AnimatedHeroProps {
     onSignIn?: () => void;
 }
 
-function AnimatedHero({ onGetStarted, onSignIn }: AnimatedHeroProps) {
+export function AnimatedHero({ onGetStarted, onSignIn }: AnimatedHeroProps) {
     const [titleNumber, setTitleNumber] = useState(0);
     const titles = useMemo(
         () => ["fast", "secure", "simple", "powerful", "reliable"],
@@ -82,14 +82,20 @@ function AnimatedHero({ onGetStarted, onSignIn }: AnimatedHeroProps) {
                         </Button>
                     </div>
 
-                    <div className="w-full max-w-3xl mt-8 rounded-xl overflow-hidden border border-border shadow-2xl">
+                    {/* Terminal Window */}
+                    <motion.div
+                        className="w-full max-w-3xl mt-8 rounded-xl overflow-hidden border border-border shadow-[0_0_50px_-12px_rgba(255,255,255,0.25)]"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                    >
                         <div className="bg-muted/50 px-4 py-3 flex items-center gap-2 border-b border-border">
                             <div className="flex gap-2">
                                 <div className="w-3 h-3 rounded-full bg-gray-400"></div>
                                 <div className="w-3 h-3 rounded-full bg-gray-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-gray-600"></div>
                             </div>
-                            <span className="text-xs text-muted-foreground ml-2">bash — 80x24</span>
+                            <span className="text-xs text-muted-foreground ml-2">bash</span>
                         </div>
                         <div className="bg-black p-6 font-mono text-sm text-left">
                             <div className="flex gap-3 text-white">
@@ -100,11 +106,10 @@ function AnimatedHero({ onGetStarted, onSignIn }: AnimatedHeroProps) {
                             <div className="mt-2 text-green-400">✓ Tunnel created successfully!</div>
                             <div className="mt-1 text-blue-400">→ Public URL: https://abc123xyz.tunnelx.dev</div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
-export { AnimatedHero };

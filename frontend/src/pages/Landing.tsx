@@ -10,9 +10,11 @@ function Landing() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-            {/* Hero Section */}
-            <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div className="min-h-screen bg-black text-foreground font-sans selection:bg-white/20 relative overflow-hidden">
+            {/* Grid Background */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
+
+            <header className="container mx-auto px-4 h-16 flex items-center justify-between relative z-10">
                 <div className="flex items-center gap-2 font-bold text-xl">
                     <Globe className="w-6 h-6 text-primary" />
                     <span>TunnelX</span>
@@ -31,10 +33,13 @@ function Landing() {
                 </div>
             </header>
 
-            <main>
+            <main className="relative z-10">
                 <section className="pt-4 pb-8 md:pt-10 md:pb-12">
                     <div className="container mx-auto px-4 text-center">
-                        <AnimatedHero />
+                        <AnimatedHero
+                            onGetStarted={() => window.open('https://www.npmjs.com/package/tunnelx', '_blank')}
+                            onSignIn={() => navigate('/register')}
+                        />
 
                     </div>
                 </section>
