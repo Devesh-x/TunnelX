@@ -10,12 +10,12 @@ const logoutCommand = () => {
     const email = getEmail();
 
     if (!email) {
-        console.log(chalk.yellow('\n⚠️  Not logged in\n'));
+        console.log(chalk.yellow('\n[Info] Not logged in\n'));
         return;
     }
 
     clearAuth();
-    console.log(chalk.green(`\n✅ Logged out from ${email}`));
+    console.log(chalk.green(`\n[Success] Logged out from ${email}`));
     console.log(chalk.gray('Token cleared\n'));
 };
 

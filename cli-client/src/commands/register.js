@@ -10,7 +10,7 @@ const { saveAuth } = require('../config/store');
  */
 
 const registerCommand = async () => {
-    console.log(chalk.blue.bold('\n📝 LocalBridge Registration\n'));
+    console.log(chalk.blue.bold('\nTunnelX Registration\n'));
 
     try {
         // Prompt for credentials
@@ -48,7 +48,7 @@ const registerCommand = async () => {
 
         // Check if user cancelled
         if (!response.email || !response.password) {
-            console.log(chalk.yellow('\n⚠️  Registration cancelled'));
+            console.log(chalk.yellow('\n[Info] Registration cancelled'));
             process.exit(0);
         }
 
@@ -61,12 +61,12 @@ const registerCommand = async () => {
         // Save credentials
         saveAuth(data.token, data.user.email);
 
-        spinner.succeed(chalk.green('✅ Account created successfully!'));
+        spinner.succeed(chalk.green('[Success] Account created successfully!'));
         console.log(chalk.gray(`Logged in as: ${data.user.email}`));
         console.log(chalk.gray('Token saved locally\n'));
-        console.log(chalk.cyan('💡 You can now create tunnels with: localbridge start --port 3000\n'));
+        console.log(chalk.cyan('[Info] You can now create tunnels with: tunnelx start --port 3000\n'));
     } catch (error) {
-        console.log(chalk.red('\n❌ Registration failed'));
+        console.log(chalk.red('\n[Error] Registration failed'));
 
         if (error.response) {
             const message = error.response.data?.error || 'Registration error';

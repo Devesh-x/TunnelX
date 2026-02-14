@@ -39,7 +39,7 @@ class TunnelClient {
             // Connection opened
             this.ws.on('open', () => {
                 this.connected = true;
-                console.log(chalk.green('✅ Connected to tunnel server'));
+                console.log(chalk.green('[Success] Connected to tunnel server'));
 
                 // Register tunnel
                 this.registerTunnel();
@@ -59,7 +59,7 @@ class TunnelClient {
             // Connection closed
             this.ws.on('close', (code, reason) => {
                 this.connected = false;
-                console.log(chalk.yellow(`\n⚠️  Connection closed (${code}): ${reason || 'Unknown'}`));
+                console.log(chalk.yellow(`\n[Info] Connection closed (${code}): ${reason || 'Unknown'}`));
 
                 // Don't exit, try to reconnect
                 console.log(chalk.gray('Configuring auto-reconnect in 3s...'));
@@ -101,7 +101,7 @@ class TunnelClient {
                 break;
 
             case 'registered':
-                console.log(chalk.green(`✅ Tunnel registered: ${message.tunnelId}`));
+                console.log(chalk.green(`[Success] Tunnel registered: ${message.tunnelId}`));
                 break;
 
             case 'request':
@@ -123,7 +123,7 @@ class TunnelClient {
     async handleRequest(message) {
         const { requestId, method, url, headers, body } = message;
 
-        console.log(chalk.cyan(`← ${method} ${url}`));
+        console.log(chalk.cyan(`${method} ${url}`));
 
         try {
             // Forward request to localhost
@@ -146,7 +146,7 @@ class TunnelClient {
                 },
             });
 
-            console.log(chalk.green(`→ ${response.status} ${response.statusText}`));
+            console.log(chalk.green(`${response.status} ${response.statusText}`));
         } catch (error) {
             console.error(chalk.red(`Error forwarding request: ${error.message}`));
 

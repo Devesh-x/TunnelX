@@ -10,7 +10,7 @@ const { saveAuth } = require('../config/store');
  */
 
 const loginCommand = async () => {
-    console.log(chalk.blue.bold('\n🔐 LocalBridge Login\n'));
+    console.log(chalk.blue.bold('\nTunnelX Login\n'));
 
     try {
         // Prompt for credentials
@@ -39,7 +39,7 @@ const loginCommand = async () => {
 
         // Check if user cancelled
         if (!response.email || !response.password) {
-            console.log(chalk.yellow('\n⚠️  Login cancelled'));
+            console.log(chalk.yellow('\n[Info] Login cancelled'));
             process.exit(0);
         }
 
@@ -52,12 +52,12 @@ const loginCommand = async () => {
         // Save credentials
         saveAuth(data.token, data.user.email);
 
-        spinner.succeed(chalk.green('✅ Login successful!'));
+        spinner.succeed(chalk.green('[Success] Login successful!'));
         console.log(chalk.gray(`Logged in as: ${data.user.email}`));
         console.log(chalk.gray('Token saved locally\n'));
-        console.log(chalk.cyan('💡 You can now create tunnels with: localbridge start --port 3000\n'));
+        console.log(chalk.cyan('[Info] You can now create tunnels with: tunnelx start --port 3000\n'));
     } catch (error) {
-        console.log(chalk.red('\n❌ Login failed'));
+        console.log(chalk.red('\n[Error] Login failed'));
 
         if (error.response) {
             const message = error.response.data?.error || 'Invalid credentials';
