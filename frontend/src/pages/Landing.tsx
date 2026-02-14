@@ -1,4 +1,3 @@
-```
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { AnimatedHero } from '@/components/ui/animated-hero';
@@ -36,7 +35,7 @@ function Landing() {
                 <section className="py-20 md:py-32">
                     <div className="container mx-auto px-4 text-center">
                         <AnimatedHero />
-                        
+
                         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
                             <Button size="lg" className="h-12 px-8 text-lg" onClick={() => navigate('/register')}>
                                 Start Tunnelling Now
@@ -59,4 +58,3 @@ function Landing() {
 }
 
 export default Landing;
-```
