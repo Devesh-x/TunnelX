@@ -1,6 +1,6 @@
 {
     "name": "tunnelx",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "TunnelX - The modern, secure alternative to ngrok. Expose your localhost to the internet with a single command. Features custom subdomains, request inspection, and more.",
     "main": "src/index.js",
     "bin": {
