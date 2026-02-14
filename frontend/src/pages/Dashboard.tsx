@@ -9,41 +9,9 @@ function Dashboard() {
     const [user, setUser] = useState<User | null>(null);
     const [tunnels, setTunnels] = useState<Tunnel[]>([]);
     const [loading, setLoading] = useState(true);
-    const [creating, setCreating] = useState(false);
-
     useEffect(() => {
         loadData();
     }, []);
-
-    const loadData = async () => {
-        try {
-            const [userRes, tunnelsRes] = await Promise.all([
-                getCurrentUser(),
-                getTunnels(),
-            ]);
-            setUser(userRes.data.data.user);
-            setTunnels(tunnelsRes.data.data.tunnels);
-        } catch (error: any) {
-            if (error.response?.status === 401) {
-                localStorage.removeItem('token');
-                navigate('/login');
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleCreateTunnel = async () => {
-        setCreating(true);
-        try {
-            await createTunnel();
-            await loadData();
-        } catch (error: any) {
-            alert(error.response?.data?.error || 'Failed to create tunnel');
-        } finally {
-            setCreating(false);
-        }
-    };
 
     const handleDeleteTunnel = async (id: string) => {
         if (!window.confirm('Delete this tunnel?')) return;
@@ -94,17 +62,13 @@ function Dashboard() {
                         <h1 className="text-4xl font-bold mb-2">Your Tunnels</h1>
                         <p className="text-muted-foreground">Manage your active localhost tunnels</p>
                     </div>
-                    <Button onClick={handleCreateTunnel} disabled={creating}>
-                        {creating ? 'Creating...' : '+ New Tunnel'}
-                    </Button>
                 </div>
 
                 {tunnels.length === 0 ? (
                     <div className="text-center py-20">
-                        <div className="text-6xl mb-4">🚇</div>
                         <h3 className="text-2xl font-bold mb-2">No tunnels yet</h3>
                         <p className="text-muted-foreground mb-6">Create your first tunnel to get started</p>
-                        <Button onClick={handleCreateTunnel}>Create Tunnel</Button>
+                        <Button onClick={() => navigate('/docs')}>Read Documentation</Button>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
