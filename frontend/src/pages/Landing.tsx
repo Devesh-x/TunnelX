@@ -32,7 +32,7 @@ function Landing() {
             </header>
 
             <main>
-                <section className="py-20 md:py-32">
+                <section className="pt-4 pb-8 md:pt-10 md:pb-12">
                     <div className="container mx-auto px-4 text-center">
                         <AnimatedHero />
 

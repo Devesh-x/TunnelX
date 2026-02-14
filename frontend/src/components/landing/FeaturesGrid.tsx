@@ -41,7 +41,7 @@ const features: FeatureCard[] = [
 
 export function FeaturesGrid() {
     return (
-        <section className="py-24">
+        <section className="py-12">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4 text-white">
