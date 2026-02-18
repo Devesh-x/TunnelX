@@ -1,198 +1,174 @@
-# TunnelX
+TunnelX
 
-> **Expose your localhost to the internet** - Fast, secure, and simple tunneling solution
+Expose your localhost to the internet — fast, secure, and developer-friendly tunneling.
 
-A modern localhost tunneling service built with Node.js, React, TypeScript, and Tailwind CSS.
+TunnelX is a modern tunneling solution that lets you share your local server with a public URL in seconds. It includes a CLI client, dashboard UI, and backend tunnel server.
 
-## 📁 Project Structure
+🚀 Install & Use (Recommended)
+1️⃣ Install TunnelX CLI
 
-```
+Install globally from npm:
+
+npm install -g tunnelx
+
+
+✅ Requires Node.js 18+
+
+2️⃣ Login to TunnelX
+
+Authenticate with your TunnelX account:
+
+tunnelx login
+
+3️⃣ Start a Tunnel
+
+Expose your local server by specifying the port.
+
+Example (React app on port 5173):
+
+tunnelx start --port 5173
+
+Example Output
+TunnelX Tunnel
+[Success] Connected to tunnel server
+Public URL: https://tunnelx-backend.onrender.com/t/abc123xyz/
+Forwarding to: http://localhost:5173
+
+
+Now your local app is accessible from anywhere 🌍
+
+💡 Pro Tip
+
+For frameworks like React, Next.js, Vue, build the app before tunneling:
+
+npm run build && npm run preview
+
+
+This prevents issues with absolute paths in development servers.
+
+🧰 Features
+
+✅ Public URL for localhost
+✅ Secure JWT authentication
+✅ WebSocket-based tunneling
+✅ Fast CLI workflow
+✅ Tunnel dashboard UI
+✅ Rate limiting & security
+✅ Real-time tunnel management
+
+📦 Project Architecture
+
+TunnelX consists of three main parts:
+
 TunnelX/
-├── backend/              # Node.js API server (formerly tunnel-server)
-│   ├── src/
-│   │   ├── controllers/  # Request handlers
-│   │   ├── models/       # Database models
-│   │   ├── routes/       # API routes
-│   │   ├── services/     # Business logic
-│   │   ├── middleware/   # Auth, logging, rate limiting
-│   │   └── server.js     # Entry point
-│   └── package.json
-│
-├── frontend/             # React TypeScript dashboard (formerly dashboard-new)
-│   ├── src/
-│   │   ├── components/   # React components
-│   │   │   └── ui/       # shadcn/ui components
-│   │   ├── pages/        # Page components
-│   │   ├── lib/          # Utilities & API client
-│   │   └── App.tsx       # Main app
-│   └── package.json
-│
-├── cli-client/           # CLI tool for creating tunnels
-│   └── src/
-│
-├── docs/                 # Documentation
-└── docker-compose.yml    # PostgreSQL + Redis
-```
+├── backend/      # Node.js tunnel server + API
+├── frontend/     # React dashboard
+├── cli-client/   # TunnelX CLI (published to npm)
+├── docs/
+└── docker-compose.yml
 
-## 🚀 Quick Start
+🖥️ Local Development (Contributors Only)
 
-### Prerequisites
-- Node.js 18+
-- Docker & Docker Compose
+If you want to run the full platform locally.
 
-### 1. Start Databases
-```bash
+Prerequisites
+
+Node.js 18+
+
+Docker & Docker Compose
+
+1. Start Databases
 docker-compose up -d
-```
 
-### 2. Start Backend
-```bash
+2. Start Backend
 cd backend
 npm install
-node src/server.js
-```
-Backend runs on: `http://localhost:8080`
+npm run dev
 
-### 3. Start Frontend
-```bash
+
+Runs on:
+
+http://localhost:8080
+
+3. Start Frontend Dashboard
 cd frontend
 npm install
 npm run dev
-```
-Frontend runs on: `http://localhost:5174`
 
-## 🎨 Frontend Stack
 
-- **TypeScript** - Type safety
-- **React 18** - UI library
-- **Tailwind CSS v3** - Styling
-- **shadcn/ui** - Component library
-- **framer-motion** - Animations
-- **React Router** - Routing
-- **Vite** - Build tool
+Runs on:
 
-## 🔧 Backend Stack
+http://localhost:5174
 
-- **Node.js** - Runtime
-- **Express** - Web framework
-- **PostgreSQL** - Database
-- **Redis** - Caching & rate limiting
-- **JWT** - Authentication
-- **WebSocket** - Real-time tunneling
+🎨 Tech Stack
+Frontend
 
-## 📖 Features
+React 18
 
-### Frontend
-- ✨ Animated hero with word transitions
-- 🔐 JWT authentication (login/register)
-- 📊 Dashboard for tunnel management
-- 🎨 Dark theme with Tailwind CSS
-- 📱 Fully responsive design
-- 🚀 Protected routes
+TypeScript
 
-### Backend
-- 🔒 Secure JWT authentication
-- 🚇 Tunnel creation & management
-- 📡 WebSocket server for tunneling
-- 🛡️ Rate limiting with Redis
-- 📝 Request logging
-- 💾 PostgreSQL data persistence
+Tailwind CSS
 
-## 🌐 API Endpoints
+shadcn/ui
 
-### Authentication
-- `POST /auth/register` - Create account
-- `POST /auth/login` - Login
-- `GET /auth/me` - Get current user
+Vite
 
-### Tunnels
-- `POST /tunnels/create` - Create tunnel
-- `GET /tunnels` - List user's tunnels
-- `DELETE /tunnels/:id` - Delete tunnel
+framer-motion
 
-### Health
-- `GET /health` - Server health check
+Backend
 
-## 🔑 Environment Variables
+Node.js
 
-### Backend (.env)
-```env
+Express
+
+PostgreSQL
+
+Redis
+
+JWT Authentication
+
+WebSocket
+
+CLI
+
+Node.js
+
+WebSocket client
+
+HTTP API integration
+
+🌐 API Endpoints
+Authentication
+
+POST /auth/register
+
+POST /auth/login
+
+GET /auth/me
+
+Tunnels
+
+POST /tunnels/create
+
+GET /tunnels
+
+DELETE /tunnels/:id
+
+🔐 Environment Variables (Backend)
 PORT=8080
 DATABASE_URL=postgresql://tunnelx:password@localhost:5432/tunnelx
 REDIS_URL=redis://localhost:6379
 JWT_SECRET=your-secret-key
 NODE_ENV=development
-```
 
-## 📝 Development
+🤝 Contributing
 
-### Backend
-```bash
-cd backend
-npm run dev    # Start with nodemon
-```
+Fork repository
 
-### Frontend
-```bash
-cd frontend
-npm run dev    # Start Vite dev server
-npm run build  # Build for production
-```
+Create feature branch
 
-## 🧪 Testing
+Commit changes
 
-Visit `http://localhost:5174` and:
-1. Click "Get Started" to register
-2. Login with your credentials
-3. Create a tunnel from the dashboard
-4. Copy the public URL
+Push branch
 
-## 📦 Project Dependencies
-
-### Frontend
-- react-router-dom - Routing
-- axios - HTTP client
-- framer-motion - Animations
-- lucide-react - Icons
-- @radix-ui/react-slot - Primitives
-- class-variance-authority - Component variants
-- tailwind-merge - Tailwind utilities
-
-### Backend
-- express - Web framework
-- pg - PostgreSQL client
-- redis - Redis client
-- jsonwebtoken - JWT auth
-- bcrypt - Password hashing
-- ws - WebSocket server
-- helmet - Security headers
-
-## 🏗️ Architecture
-
-```
-Client (Browser)
-    ↓
-Frontend (React)
-    ↓ HTTP/REST
-Backend (Express)
-    ↓
-PostgreSQL + Redis
-    ↓
-WebSocket Server
-    ↓
-Tunnel Connections
-```
-
-## 📄 License
-
-MIT
-
-## 👥 Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
----
+Open PR
