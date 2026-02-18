@@ -1,174 +1,149 @@
-TunnelX
+# TunnelX
+Expose your localhost to the internet.
 
-Expose your localhost to the internet — fast, secure, and developer-friendly tunneling.
+TunnelX is a professional, secure, and lightweight command-line tool that creates a secure tunnel from the public internet to your local machine. It creates a bridge between the public internet and your local web server, allowing you to share your work, test webhooks, and develop locally with a secure public URL.
 
-TunnelX is a modern tunneling solution that lets you share your local server with a public URL in seconds. It includes a CLI client, dashboard UI, and backend tunnel server.
+[![npm version](https://img.shields.io/npm/v/tunnelx.svg)](https://www.npmjs.com/package/tunnelx)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-🚀 Install & Use (Recommended)
-1️⃣ Install TunnelX CLI
+## Features
+- **Instant Public URL**: Get a secure https URL for your localhost server immediately.
+- **Secure Tunnels**: All traffic is encrypted and securely forwarded.
+- **WebSocket Support**: Full support for real-time applications and WebSockets.
+- **Request Inspection**: Real-time logging of incoming requests (Method, Path, Status).
+- **Persistent Identity**: Maintain your tunnel metrics and history.
+- **Cross-Platform**: Works on Windows, macOS, and Linux.
 
-Install globally from npm:
+## Installation
+Install TunnelX globally using npm:
 
+```bash
 npm install -g tunnelx
+```
 
+Or run it directly with npx without installation:
 
-✅ Requires Node.js 18+
+```bash
+npx tunnelx start --port 3000
+```
 
-2️⃣ Login to TunnelX
+## Quick Start
+### 1. Register
+Create a free account to get started.
 
-Authenticate with your TunnelX account:
+```bash
+tunnelx register
+```
 
+### 2. Login
+Authenticate your CLI client.
+
+```bash
 tunnelx login
+```
 
-3️⃣ Start a Tunnel
+### 3. Start a Tunnel
+Expose your local server running on a specific port (e.g., 3000).
 
-Expose your local server by specifying the port.
+```bash
+tunnelx start --port 3000
+```
 
-Example (React app on port 5173):
+## Example Output
+```bash
+$ tunnelx start --port 3000
 
-tunnelx start --port 5173
-
-Example Output
 TunnelX Tunnel
-[Success] Connected to tunnel server
-Public URL: https://tunnelx-backend.onrender.com/t/abc123xyz/
-Forwarding to: http://localhost:5173
+==================================================
 
+[Success] Tunnel created!
+Tunnel ID:  abc123xyz
+Public URL: https://abc123xyz.tunnelx.dev
+Forwarding: https://abc123xyz.tunnelx.dev -> http://localhost:3000
 
-Now your local app is accessible from anywhere 🌍
+[Success] Tunnel is active!
+Press Ctrl+C to stop
 
-💡 Pro Tip
+[INFO]  GET  /api/users      200 OK
+[INFO]  POST /webhooks/stripe 201 Created
+```
 
-For frameworks like React, Next.js, Vue, build the app before tunneling:
+## Commands
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `tunnelx register` | Create a new TunnelX account | `tunnelx register` |
+| `tunnelx login` | Login to your account | `tunnelx login` |
+| `tunnelx start` | Start a tunnel on a specific port | `tunnelx start --port <port>` |
+| `tunnelx whoami` | Check currently logged-in user | `tunnelx whoami` |
+| `tunnelx logout` | Logout from the CLI | `tunnelx logout` |
+| `tunnelx --help` | Show help and usage details | `tunnelx --help` |
 
-npm run build && npm run preview
+## How It Works
+1. **Client Connection**: The TunnelX CLI establishes a secure WebSocket connection to the TunnelX Server.
+2. **Public Endpoint**: The server provisions a unique subdomain (e.g., `yourapp.tunnelx.dev`).
+3. **Request Forwarding**: Incoming requests to the public URL are routed through the WebSocket tunnel to your CLI.
+4. **Local Execution**: Your CLI proxies the request to your local server (e.g., `localhost:3000`) and returns the response.
 
+## Troubleshooting
+- **Port already in use**: Ensure no other instance of TunnelX is running. `killall node` (macOS/Linux) or check Task Manager (Windows).
+- **Connection refused**: Verify that your local web server is running on the specified port before starting the tunnel.
 
-This prevents issues with absolute paths in development servers.
+## Keywords
+`tunnel`, `localhost`, `ngrok`, `ngrok-alternative`, `reverse-proxy`, `webhook`, `cli`, `devtools`, `exposure`, `port-forwarding`, `secure-tunnel`
 
-🧰 Features
+## How to Contribute
 
-✅ Public URL for localhost
-✅ Secure JWT authentication
-✅ WebSocket-based tunneling
-✅ Fast CLI workflow
-✅ Tunnel dashboard UI
-✅ Rate limiting & security
-✅ Real-time tunnel management
+We welcome contributions! To get started with local development of TunnelX (CLI, Backend, and Frontend), follow these steps:
 
-📦 Project Architecture
+### Prerequisites
+- Node.js 18+
+- Docker & Docker Compose (for local database & redis)
 
-TunnelX consists of three main parts:
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Devesh-x/TunnelX.git
+cd TunnelX
+```
 
-TunnelX/
-├── backend/      # Node.js tunnel server + API
-├── frontend/     # React dashboard
-├── cli-client/   # TunnelX CLI (published to npm)
-├── docs/
-└── docker-compose.yml
-
-🖥️ Local Development (Contributors Only)
-
-If you want to run the full platform locally.
-
-Prerequisites
-
-Node.js 18+
-
-Docker & Docker Compose
-
-1. Start Databases
+### 2. Set Up Databases
+Start PostgreSQL and Redis using Docker Compose:
+```bash
 docker-compose up -d
+```
 
-2. Start Backend
+### 3. Set Up Backend
+```bash
 cd backend
 npm install
+cp .env.example .env
+# Update .env with your local credentials if needed
 npm run dev
+```
+The backend includes the API and the WebSocket tunnel server.
 
-
-Runs on:
-
-http://localhost:8080
-
-3. Start Frontend Dashboard
-cd frontend
+### 4. Set Up Frontend (Dashboard)
+```bash
+cd ../frontend
 npm install
 npm run dev
+```
+The dashboard runs at `http://localhost:5173` (or the port shown in your terminal).
 
+### 5. Set Up CLI Client
+```bash
+cd ../cli-client
+npm install
+npm link
+```
+Now you can run `tunnelx` from anywhere on your machine, pointing to your local development environment.
 
-Runs on:
+### Development Workflow
+- **Branching**: Create a feature branch for your changes (`git checkout -b feature/amazing-feature`).
+- **Committing**: Make descriptive commits.
+- **Pull Request**: Submit a PR to the `main` branch.
 
-http://localhost:5174
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-🎨 Tech Stack
-Frontend
-
-React 18
-
-TypeScript
-
-Tailwind CSS
-
-shadcn/ui
-
-Vite
-
-framer-motion
-
-Backend
-
-Node.js
-
-Express
-
-PostgreSQL
-
-Redis
-
-JWT Authentication
-
-WebSocket
-
-CLI
-
-Node.js
-
-WebSocket client
-
-HTTP API integration
-
-🌐 API Endpoints
-Authentication
-
-POST /auth/register
-
-POST /auth/login
-
-GET /auth/me
-
-Tunnels
-
-POST /tunnels/create
-
-GET /tunnels
-
-DELETE /tunnels/:id
-
-🔐 Environment Variables (Backend)
-PORT=8080
-DATABASE_URL=postgresql://tunnelx:password@localhost:5432/tunnelx
-REDIS_URL=redis://localhost:6379
-JWT_SECRET=your-secret-key
-NODE_ENV=development
-
-🤝 Contributing
-
-Fork repository
-
-Create feature branch
-
-Commit changes
-
-Push branch
-
-Open PR
+## Author
+**Devesh Rajput** - [GitHub](https://github.com/Devesh-x)

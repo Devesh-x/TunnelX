@@ -11,7 +11,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./tunnel-server/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     networks:
       - localbridge-network
     healthcheck:
