@@ -26,18 +26,9 @@ const logger = winston.createLogger({
     level: process.env.LOG_LEVEL || 'info',
     format: logFormat,
     transports: [
-        // Console transport
+        // Console transport is the only reliable one on many cloud platforms
         new winston.transports.Console({
             format: consoleFormat,
-        }),
-        // File transport for errors
-        new winston.transports.File({
-            filename: 'logs/error.log',
-            level: 'error',
-        }),
-        // File transport for all logs
-        new winston.transports.File({
-            filename: 'logs/combined.log',
         }),
     ],
 });
