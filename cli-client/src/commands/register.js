@@ -13,6 +13,8 @@ const registerCommand = async () => {
     console.log(chalk.blue.bold('\nTunnelX Registration\n'));
 
     try {
+        let password = '';
+
         // Prompt for credentials
         const response = await prompts([
             {
@@ -32,6 +34,7 @@ const registerCommand = async () => {
                 validate: (value) => {
                     if (!value) return 'Password is required';
                     if (value.length < 6) return 'Password must be at least 6 characters';
+                    password = value;
                     return true;
                 },
             },
@@ -39,8 +42,8 @@ const registerCommand = async () => {
                 type: 'password',
                 name: 'confirmPassword',
                 message: 'Confirm password:',
-                validate: (value, prev) => {
-                    if (value !== prev.password) return 'Passwords do not match';
+                validate: (value) => {
+                    if (value !== password) return 'Passwords do not match';
                     return true;
                 },
             },
